@@ -58,5 +58,21 @@ namespace UserMaintenance
 
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            int oID = Convert.ToInt32(listBox1.SelectedItem);
+            var od = from x in users
+                           select x;
+            users.Remove(od.FirstOrDefault());
+            
+            
+
+        }
+
+       // private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+       // {
+
+       // }
     }
 }
