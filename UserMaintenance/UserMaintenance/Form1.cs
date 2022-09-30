@@ -26,6 +26,8 @@ namespace UserMaintenance
             listBox1.ValueMember = "ID";
             listBox1.DisplayMember = "FullName";
 
+            button2.Text = Resource.Felirat;
+
 
         }
 
