@@ -17,13 +17,17 @@ namespace proba
     public partial class Form1 : Form
     {
         BindingList<RateDate> rd = new BindingList<RateDate>();
-
+        BindingList<string> Currencies = new BindingList<string>();
         
+
+
         public Form1()
         {
             InitializeComponent();
             RefreshData();
-            
+            comboBox1.DataSource = Currencies;
+
+
 
         }
 
