@@ -31,10 +31,11 @@ namespace proba
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.rateDateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.currencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rateDateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rateDateBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -51,12 +52,16 @@ namespace proba
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(800, 450);
+            this.dataGridView1.Size = new System.Drawing.Size(966, 450);
             this.dataGridView1.TabIndex = 0;
             // 
-            // rateDateBindingSource
+            // richTextBox1
             // 
-            this.rateDateBindingSource.DataSource = typeof(proba.Entities.RateDate);
+            this.richTextBox1.Location = new System.Drawing.Point(507, 153);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(297, 249);
+            this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.Text = "";
             // 
             // dateDataGridViewTextBoxColumn
             // 
@@ -76,11 +81,16 @@ namespace proba
             this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
             this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
             // 
+            // rateDateBindingSource
+            // 
+            this.rateDateBindingSource.DataSource = typeof(proba.Entities.RateDate);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(966, 450);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -97,6 +107,7 @@ namespace proba
         private System.Windows.Forms.DataGridViewTextBoxColumn currencyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource rateDateBindingSource;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
