@@ -22,12 +22,7 @@ namespace proba
         public Form1()
         {
             InitializeComponent();
-
-            harmadik();
-            
-
-            Looad();
-
+            RefreshData();
             
 
         }
@@ -44,12 +39,12 @@ namespace proba
                 var rate = new RateDate();
                 rd.Add(rate);
 
+                //dátum
+                rate.Date = dateTimePicker1.Value;
 
-                rate.Date = DateTime.Parse(element.GetAttribute("date"));
-
-
+                //valuta
                 var childElement = (XmlElement)element.ChildNodes[0];
-                rate.Currency = childElement.GetAttribute("curr");
+                rate.Currency = (string)comboBox1.SelectedItem;
 
 
                 var unit = decimal.Parse(childElement.GetAttribute("unit"));
@@ -102,6 +97,28 @@ namespace proba
             chartArea.AxisY.MajorGrid.Enabled = false;
             chartArea.AxisY.IsStartedFromZero = false;
         }
-        
+
+        private void RefreshData()
+        {
+            harmadik();
+
+
+            Looad();
+
+            hatodik();
+
+            rd.Clear();
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
     }
 }

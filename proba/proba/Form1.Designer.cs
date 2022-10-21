@@ -34,15 +34,16 @@ namespace proba
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.rateDateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.chartRateData = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.currencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chartRateData = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.rateDateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rateDateBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartRateData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rateDateBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -60,17 +61,38 @@ namespace proba
             this.dataGridView1.Size = new System.Drawing.Size(966, 450);
             this.dataGridView1.TabIndex = 0;
             // 
-            // richTextBox1
+            // chartRateData
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(158, 239);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(171, 172);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            chartArea1.Name = "ChartArea1";
+            this.chartRateData.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartRateData.Legends.Add(legend1);
+            this.chartRateData.Location = new System.Drawing.Point(534, 83);
+            this.chartRateData.Name = "chartRateData";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartRateData.Series.Add(series1);
+            this.chartRateData.Size = new System.Drawing.Size(420, 325);
+            this.chartRateData.TabIndex = 2;
+            this.chartRateData.Text = "chart1";
             // 
-            // rateDateBindingSource
+            // comboBox1
             // 
-            this.rateDateBindingSource.DataSource = typeof(proba.Entities.RateDate);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(207, 73);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(277, 21);
+            this.comboBox1.TabIndex = 3;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(229, 116);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(245, 20);
+            this.dateTimePicker1.TabIndex = 4;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dateDataGridViewTextBoxColumn
             // 
@@ -91,35 +113,24 @@ namespace proba
             this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
             this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
             // 
-            // chartRateData
+            // rateDateBindingSource
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartRateData.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartRateData.Legends.Add(legend1);
-            this.chartRateData.Location = new System.Drawing.Point(499, 73);
-            this.chartRateData.Name = "chartRateData";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartRateData.Series.Add(series1);
-            this.chartRateData.Size = new System.Drawing.Size(420, 325);
-            this.chartRateData.TabIndex = 2;
-            this.chartRateData.Text = "chart1";
+            this.rateDateBindingSource.DataSource = typeof(proba.Entities.RateDate);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(966, 450);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.chartRateData);
-            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rateDateBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartRateData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rateDateBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -128,11 +139,12 @@ namespace proba
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource rateDateBindingSource;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn currencyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartRateData;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 
