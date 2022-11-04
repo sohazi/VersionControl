@@ -14,7 +14,7 @@ namespace Ajandek
 {
     public partial class Form1 : Form
     {
-        private List<Ball> _ball = new List<Ball>();
+        private List<Toy> _toy = new List<Toy>();
         private BallFactory _factory;
         public BallFactory Factory
         {
@@ -33,7 +33,7 @@ namespace Ajandek
         private void createTimer_Tick(object sender, EventArgs e)
         {
             var ball = Factory.CreateNew();
-            _ball.Add((Ball)ball);
+            _toy.Add((Ball)ball);
             ball.Left = -ball.Width;
             mainPanel.Controls.Add(ball);
         }
@@ -41,7 +41,7 @@ namespace Ajandek
         private void conveyorTimer_Tick(object sender, EventArgs e)
         {
             var maxpos = 0;
-            foreach (var ball in _ball)
+            foreach (var ball in _toy)
             {
                ball.MoveBall();
                 if(ball.Left > maxpos)
@@ -51,9 +51,9 @@ namespace Ajandek
 
             if (maxpos > 1000)
             {
-                var oldestBall = _ball[0];
+                var oldestBall = _toy[0];
                 mainPanel.Controls.Remove(oldestBall);
-                _ball.Remove(oldestBall);
+                _toy.Remove(oldestBall);
             }
         }
     }
