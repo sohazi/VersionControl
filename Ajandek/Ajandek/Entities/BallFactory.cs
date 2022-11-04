@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ajandek.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Ajandek.Entities
 {
-    public class BallFactory
+    public class BallFactory:IToyFactory
     {
         //public int MyProperty { get; set; }
-        public Ball CreateNew()
+        public Toy CreateNew()
         {
             return new Ball();
         }

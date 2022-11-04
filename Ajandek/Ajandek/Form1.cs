@@ -1,4 +1,5 @@
 ﻿using Ajandek.Entities;
+using Ajandek.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +33,7 @@ namespace Ajandek
         private void createTimer_Tick(object sender, EventArgs e)
         {
             var ball = Factory.CreateNew();
-            _ball.Add(ball);
+            _ball.Add((Ball)ball);
             ball.Left = -ball.Width;
             mainPanel.Controls.Add(ball);
         }
