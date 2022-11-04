@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ajandek.Entities
 {
-    class BallFactory
+    public class BallFactory
     {
         //public int MyProperty { get; set; }
         public Ball CreateNew()

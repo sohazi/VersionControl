@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ajandek.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,47 @@ namespace Ajandek
 {
     public partial class Form1 : Form
     {
+        private List<Ball> _ball = new List<Ball>();
+        private BallFactory _factory;
+        public BallFactory Factory
+        {
+            get { return _factory; }
+            set { _factory = value; }
+        }
+
         public Form1()
         {
             InitializeComponent();
+            Factory = new BallFactory();
+        }
+
+        
+
+        private void createTimer_Tick(object sender, EventArgs e)
+        {
+            var ball = Factory.CreateNew();
+            _ball.Add(ball);
+            ball.Left = -ball.Width;
+            mainPanel.Controls.Add(ball);
+        }
+
+        private void conveyorTimer_Tick(object sender, EventArgs e)
+        {
+            var maxpos = 0;
+            foreach (var ball in _ball)
+            {
+               ball.MoveBall();
+                if(ball.Left > maxpos)
+                    maxpos = ball.Left;
+
+            }
+
+            if (maxpos > 1000)
+            {
+                var oldestBall = _ball[0];
+                mainPanel.Controls.Remove(oldestBall);
+                _ball.Remove(oldestBall);
+            }
         }
     }
 }
