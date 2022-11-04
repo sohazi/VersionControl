@@ -14,5 +14,10 @@ namespace Ajandek.Entities
         {
             return new Ball();
         }
+
+        public static implicit operator BallFactory(Car v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
