@@ -12,9 +12,14 @@ namespace Érték
 {
     public partial class Form1 : Form
     {
+        new PortfolioEntities context = new PortfolioEntities();
+
+        List<Tick> Ticks = new List<Tick>();
         public Form1()
         {
             InitializeComponent();
+            Ticks = context.Ticks.ToList();
+            dataGridView1.DataSource = Ticks;
         }
     }
 }
