@@ -27,23 +27,7 @@ namespace none
             DeathProbabilities = GetHalVal(@"C:\Temp\halál.csv");
 
 
-            for (int year = 2005; year <= 2024; year++)
-            {
-                
-                for (int i = 0; i < Population.Count; i++)
-                {
-                    // Ide jön a szimulációs lépés
-                }
-
-                int nbrOfMales = (from x in Population
-                                  where x.Gender == Gender.Male && x.IsAlive
-                                  select x).Count();
-                int nbrOfFemales = (from x in Population
-                                    where x.Gender == Gender.Female && x.IsAlive
-                                    select x).Count();
-                Console.WriteLine(
-                    string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
-            }
+            
 
         }
 
@@ -64,7 +48,7 @@ namespace none
                     });
                 }
             }
-            //dataGridView1.DataSource = population;
+            dataGridView1.DataSource = population;
             return population;
             
         }
@@ -111,6 +95,65 @@ namespace none
             return DeathProbabilities;
         }
 
+        private void SimStep(int year, Person person)
+        {
+            
+            if (!person.IsAlive) return;
 
+           
+            byte age = (byte)(year - person.BirthYear);
+
+           
+            double pDeath = (from x in DeathProbabilities
+                             where x.nem == person.Gender && x.kor == age
+                             select x.halvál).FirstOrDefault();
+            
+            if (rng.NextDouble() <= pDeath)
+                person.IsAlive = false;
+
+            
+            if (person.IsAlive && person.Gender == Gender.Female)
+            {
+                
+                double pBirth = (from x in BirthProbabilities
+                                 where x.kor == age
+                                 select x.Szvalószínűség).FirstOrDefault();
+                
+                if (rng.NextDouble() <= pBirth)
+                {
+                    Person újszülött = new Person();
+                    újszülött.BirthYear = year;
+                    újszülött.NbrOfChildren = 0;
+                    újszülött.Gender = (Gender)(rng.Next(1, 3));
+                    Population.Add(újszülött);
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            kiszerv();
+        }
+
+        private void kiszerv()
+        {
+            for (int year = 2005; year <= 2024; year++)
+            {
+
+                for (int i = 0; i < Population.Count; i++)
+                {
+                    SimStep(2005, Population[i]);
+                }
+
+                int nbrOfMales = (from x in Population
+                                  where x.Gender == Gender.Male && x.IsAlive
+                                  select x).Count();
+                int nbrOfFemales = (from x in Population
+                                    where x.Gender == Gender.Female && x.IsAlive
+                                    select x).Count();
+                Console.WriteLine(
+                    string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
+            }
+        }
     }
 }
