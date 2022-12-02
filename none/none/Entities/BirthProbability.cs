@@ -12,7 +12,7 @@ namespace none.Entities
 
         public int gyerekszám { get; set; }
 
-        public double valószínűség { get; set; }
+        public double Szvalószínűség { get; set; }
 
        
     }

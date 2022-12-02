@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace none.Entities
 {
-    class DeathProbability
+   public class DeathProbability
     {
+        public Gender nem { get; set; }
+
+        public int kor { get; set; }
+
+        public double halvál { get; set; }
     }
 }
